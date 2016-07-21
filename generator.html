@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calendar Generator</title>
+</head>
+
+<body>
+
+<h1>Calender Generator</h1>
+<p id="todaysDate"></p>
+
+  Start date:
+  <input type="date" id="start"><br>
+  End date:
+  <input type="date" id="end"><br>
+  <button onclick="getDates()">Create Calendar</button>
+
+
+<p id="Output"></p>
+
+<script>
+function getDates() {
+    var startDate = document.getElementById("start").value;
+	document.getElementById("Output").innerHTML = startDate;
+}
+function pad(num){
+	if (num < 10) {
+		return "0" + num;
+	} else {
+		return num;
+	}
+}
+var today = new Date();
+var todayStr = today.getFullYear() + "-" + pad(today.getMonth() + 1) + "-" 
+	+ pad(today.getDate());
+document.getElementById("start").min = todayStr;
+document.getElementById("end").min = todayStr;
+</script>
+
+</body>
+</html>
