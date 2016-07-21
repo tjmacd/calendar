@@ -20,8 +20,12 @@
 
 <script>
 function getDates() {
-    var startDate = document.getElementById("start").value;
-	document.getElementById("Output").innerHTML = startDate;
+    var startDate = new Date(document.getElementById("start").value + "T12:00:00");
+	var endDate = new Date(document.getElementById("end").value + "T12:00:00");
+	startDate.setDate(startDate.getDate() - startDate.getDay());
+	endDate.setDate(endDate.getDate() - endDate.getDay());
+	document.getElementById("Output").innerHTML = startDate + "<br />" + 
+		endDate;
 }
 function pad(num){
 	if (num < 10) {
