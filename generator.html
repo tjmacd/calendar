@@ -28,12 +28,11 @@ td {
 <h1>Calender Generator</h1>
 <p id="todaysDate"></p>
 
-  Start date:
-  <input type="date" id="start"><br>
-  End date:
-  <input type="date" id="end"><br>
-  <button onclick="getDates()">Create Calendar</button>
-
+Start date:
+<input type="date" id="start"><br>
+End date:
+<input type="date" id="end"><br>
+<button onclick="getDates()">Create Calendar</button>
 
 <p id="Output"></p>
 
@@ -62,9 +61,7 @@ function getDates() {
 
 function genCalendar(startDate, endDate) {
 	var w = window.open("");
-	//var table = document.getElementById("cal");
 	// Create header
-	
 	var head = w.document.getElementsByTagName("head")[0];
 	var title = w.document.createElement("title");
 	title.appendChild(w.document.createTextNode("Calendar"));
@@ -103,8 +100,10 @@ function genCalendar(startDate, endDate) {
 	}
 	table.appendChild(header);
 	
-	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November","December"];
-	var colours = ["#87CEFF","#B9D3EE","#97FFFF","#C1FFC1","#CAFF70","#FFF68F","#FFDAB9","#FFB6C1","#FFEC8B","#FFD39B","#FFEFDB","#F0F8FF"];
+	var months = ["January", "February", "March", "April", "May", "June", 
+		"July", "August", "September", "October","November","December"];
+	var colours = ["#87CEFF","#B9D3EE","#97FFFF","#C1FFC1","#CAFF70",
+		"#FFF68F","#FFDAB9","#FFB6C1","#FFEC8B","#FFD39B","#FFEFDB","#F0F8FF"];
 	var cursor = startDate;
 	var start = true;
 	var month;
