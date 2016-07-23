@@ -69,7 +69,7 @@ function genCalendar(startDate, endDate) {
 	var title = w.document.createElement("title");
 	title.appendChild(w.document.createTextNode("Calendar"));
 	var stylesheet = w.document.createElement("style");
-	stylesheet.appendChild(w.document.createTextNode(
+	stylesheet.innerHTML =
 		"table { \
 			width:100%; \
 			table-layout: fixed; \
@@ -85,7 +85,7 @@ function genCalendar(startDate, endDate) {
 		td {\
 			height: 60px;\
 			vertical-align: top;\
-		}"));
+		}";
 	head.appendChild(title);
 	head.appendChild(stylesheet);
 	
@@ -98,22 +98,25 @@ function genCalendar(startDate, endDate) {
 		"Saturday"];
 	for(var i = 0; i < days.length; i++){
 		var cell = w.document.createElement("th");
-		var cellText = w.document.createTextNode(days[i]);
-		cell.appendChild(cellText);
+		cell.innerHTML = days[i];
 		header.appendChild(cell);
 	}
 	table.appendChild(header);
 	
-	
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November","December"];
 	var cursor = startDate;
+	var start = true;
 	while (cursor <= endDate) {
 		var row = w.document.createElement("tr");
 		for(var i = 0; i < 7; i++) {
 			var cell = w.document.createElement("td");
-			var cellText = w.document.createTextNode(cursor.getDate());
-			cell.appendChild(cellText);
+			cell.innerHTML = cursor.getDate();
+			if (start || cursor.getDate() == 1){
+				cell.innerHTML += " " + months[cursor.getMonth()];
+			}
 			row.appendChild(cell);
 			cursor.setDate(cursor.getDate() + 1);
+			start = false;
 		}
 		table.appendChild(row);
 	}
