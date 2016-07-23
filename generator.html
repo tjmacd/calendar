@@ -104,9 +104,10 @@ function genCalendar(startDate, endDate) {
 	table.appendChild(header);
 	
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November","December"];
+	var colours = ["#87CEFF","#B9D3EE","#97FFFF","#C1FFC1","#CAFF70","#FFF68F","#FFDAB9","#FFB6C1","#FFEC8B","#FFD39B","#FFEFDB","#F0F8FF"];
 	var cursor = startDate;
 	var start = true;
-	var color = "#" + (Math.random().toString(16) + "000000").substring(2,8);
+	var month;
 	while (cursor <= endDate) {
 		var row = w.document.createElement("tr");
 		for(var i = 0; i < 7; i++) {
@@ -114,10 +115,9 @@ function genCalendar(startDate, endDate) {
 			cell.innerHTML = cursor.getDate();
 			if (start || cursor.getDate() == 1){
 				cell.innerHTML += " " + months[cursor.getMonth()];
-				color = "#" + (Math.random().toString(16) + "000000").substring(2,8);
-				
+				month = cursor.getMonth();
 			}
-			cell.setAttribute("style", "background-color:" + color);
+			cell.setAttribute("style", "background-color:" + colours[month]);
 			row.appendChild(cell);
 			cursor.setDate(cursor.getDate() + 1);
 			start = false;
