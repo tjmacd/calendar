@@ -2,6 +2,25 @@
 <html>
 <head>
 <title>Calendar Generator</title>
+
+<style>
+table {
+	width:100%;
+	table-layout: fixed;
+}
+table, td, th {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+th {
+	background-color: light-grey;
+	color: black;
+}
+td {
+	height: 60px;
+	vertical-align: top;
+}
+</style>
 </head>
 
 <body>
@@ -18,6 +37,18 @@
 
 <p id="Output"></p>
 
+<table id="cal">
+  <tr>
+    <th>Sunday</th>
+	<th>Monday</th>
+	<th>Tuesday</th>
+	<th>Wednesday</th>
+	<th>Thursday</th>
+	<th>Friday</th>
+	<th>Saturday</th>
+  </tr>
+</table>
+
 <script>
 function getDates() {
     var startDate = new Date(document.getElementById("start").value + "T12:00:00");
@@ -26,7 +57,38 @@ function getDates() {
 	endDate.setDate(endDate.getDate() - endDate.getDay());
 	document.getElementById("Output").innerHTML = startDate + "<br />" + 
 		endDate;
+	genCalendar(startDate, endDate);
 }
+
+function genCalendar(startDate, endDate) {
+	var table = document.getElementById("cal");
+	/*
+	var header = document.createElement("tr");
+	var days = ["Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday",
+		"Saturday"];
+	for(var i = 0; i < days.length; i++){
+		var cell = document.createElement("th");
+		var cellText = document.createTextNode(days[i]);
+		cell.appendChild(cellText);
+		header.appendChild(cell);
+	}
+	table.appendChild(header);
+	body.appendChild(table);
+	*/
+	var cursor = startDate;
+	while (cursor <= endDate) {
+		var row = document.createElement("tr");
+		for(var i = 0; i < 7; i++) {
+			var cell = document.createElement("td");
+			var cellText = document.createTextNode(cursor.getDate());
+			cell.appendChild(cellText);
+			row.appendChild(cell);
+			cursor.setDate(cursor.getDate() + 1);
+		}
+		table.appendChild(row);
+	}
+}
+
 function pad(num){
 	if (num < 10) {
 		return "0" + num;
@@ -39,6 +101,8 @@ var todayStr = today.getFullYear() + "-" + pad(today.getMonth() + 1) + "-"
 	+ pad(today.getDate());
 document.getElementById("start").min = todayStr;
 document.getElementById("end").min = todayStr;
+
+
 </script>
 
 </body>
