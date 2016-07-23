@@ -13,7 +13,7 @@ table, td, th {
 	border-collapse: collapse;
 }
 th {
-	background-color: light-grey;
+	background-color: #DDDDDD;
 	color: black;
 }
 td {
@@ -61,32 +61,63 @@ function getDates() {
 }
 
 function genCalendar(startDate, endDate) {
-	var table = document.getElementById("cal");
-	/*
-	var header = document.createElement("tr");
+	var w = window.open("");
+	//var table = document.getElementById("cal");
+	// Create header
+	
+	var head = w.document.getElementsByTagName("head")[0];
+	var title = w.document.createElement("title");
+	title.appendChild(w.document.createTextNode("Calendar"));
+	var stylesheet = w.document.createElement("style");
+	stylesheet.appendChild(w.document.createTextNode(
+		"table { \
+			width:100%; \
+			table-layout: fixed; \
+		}\
+		table, td, th {\
+			border: 1px solid black;\
+			border-collapse: collapse;\
+		}\
+		th {\
+			background-color: #DDDDDD;\
+			color: black;\
+		}\
+		td {\
+			height: 60px;\
+			vertical-align: top;\
+		}"));
+	head.appendChild(title);
+	head.appendChild(stylesheet);
+	
+	// Generate table
+	var body = w.document.getElementsByTagName("body")[0];
+	var table = w.document.createElement("table");
+	
+	var header = w.document.createElement("tr");
 	var days = ["Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday",
 		"Saturday"];
 	for(var i = 0; i < days.length; i++){
-		var cell = document.createElement("th");
-		var cellText = document.createTextNode(days[i]);
+		var cell = w.document.createElement("th");
+		var cellText = w.document.createTextNode(days[i]);
 		cell.appendChild(cellText);
 		header.appendChild(cell);
 	}
 	table.appendChild(header);
-	body.appendChild(table);
-	*/
+	
+	
 	var cursor = startDate;
 	while (cursor <= endDate) {
-		var row = document.createElement("tr");
+		var row = w.document.createElement("tr");
 		for(var i = 0; i < 7; i++) {
-			var cell = document.createElement("td");
-			var cellText = document.createTextNode(cursor.getDate());
+			var cell = w.document.createElement("td");
+			var cellText = w.document.createTextNode(cursor.getDate());
 			cell.appendChild(cellText);
 			row.appendChild(cell);
 			cursor.setDate(cursor.getDate() + 1);
 		}
 		table.appendChild(row);
 	}
+	body.appendChild(table);
 }
 
 function pad(num){
