@@ -1,0 +1,16 @@
+table {
+	width:100%;
+	table-layout: fixed;
+}
+table, td, th {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+th {
+	background-color: #DDDDDD;
+	color: black;
+}
+td {
+	height: 60px;
+	vertical-align: top;
+}
