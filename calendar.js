@@ -10,6 +10,7 @@ function getDates() {
 }
 
 function genCalendar(startDate, endDate) {
+    var table = document.getElementById("cal");
 	var months = ["January", "February", "March", "April", "May", "June", 
           "July", "August", "September", "October","November","December"];
     var colours = ["#87CEFF","#B9D3EE","#97FFFF","#C1FFC1","#CAFF70","#FFF68F",
