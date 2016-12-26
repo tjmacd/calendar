@@ -14,3 +14,13 @@ td {
 	height: 60px;
 	vertical-align: top;
 }
+
+@media print {
+	#input {
+		display: none;
+	}
+	
+	#cal {
+		visibility: visible;
+	}
+}
