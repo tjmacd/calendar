@@ -4,13 +4,27 @@ function getDates() {
     var endDate = new Date(document.getElementById("end").value + "T12:00:00");
     startDate.setDate(startDate.getDate() - startDate.getDay());
     endDate.setDate(endDate.getDate() - endDate.getDay());
-    document.getElementById("Output").innerHTML = startDate + "<br />" + 
+    document.getElementById("Output").innerHTML = startDate.toDateString() + "<br />" + 
       endDate;
     genCalendar(startDate, endDate);
 }
 
 function genCalendar(startDate, endDate) {
-    var table = document.getElementById("cal");
+    var title = document.getElementById("title");
+    title.innerHTML = startDate.toDateString();
+    
+    var cal = document.getElementById("cal");
+    cal.innerHTML = "";
+    var table = document.createElement("table");
+    var header = document.createElement("tr");
+    header.innerHTML = "<th>Sunday</th>\
+                        <th>Monday</th>\
+                        <th>Tuesday</th>\
+                        <th>Wednesday</th>\
+                        <th>Thursday</th>\
+                        <th>Friday</th>\
+                        <th>Saturday</th>";
+    table.appendChild(header);
 	var months = ["January", "February", "March", "April", "May", "June", 
           "July", "August", "September", "October","November","December"];
     var colours = ["#87CEFF","#B9D3EE","#97FFFF","#C1FFC1","#CAFF70","#FFF68F",
@@ -34,6 +48,8 @@ function genCalendar(startDate, endDate) {
         }
         table.appendChild(row);
     }
+    cal.appendChild(table);
+    
 }
 
 function pad(num){
